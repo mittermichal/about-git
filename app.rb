@@ -1,10 +1,11 @@
+
 #!/usr/bin/env ruby
 #encoding:utf-8
 
 require 'net/http'
 require 'json'
 require 'uri'
-
+require 'cgi'
 exit 0 if ARGV.empty?
 
 GRAPH_API_URL = 'http://graph.facebook.com/'
@@ -20,3 +21,9 @@ response = Net::HTTP.get_response(URI.parse(uri_for_page))
 p response.code
 p JSON.parse(response.body)['id']
 
+uri_about_article = "http://api.facebook.com/method/links.getStats?urls=zpravy.idnes.cz&format=json"
+
+response = Net::HTTP.get_response(URI.parse(uri_about_article))
+
+url_likes_count = JSON.parse(response.body)['like_count']
+url_shares_count = JSON.parse(response.body)['share_count']
