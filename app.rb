@@ -21,7 +21,7 @@ response = Net::HTTP.get_response(URI.parse(uri_for_page))
 p response.code
 p JSON.parse(response.body)['id']
 
-uri_about_article = "http://api.facebook.com/method/links.getStats?urls=zpravy.idnes.cz&format=json"
+uri_about_article = "http://api.facebook.com/method/links.getStats?urls=#{ARGV[0]}&format=json"
 
 response = Net::HTTP.get_response(URI.parse(uri_about_article))
 
