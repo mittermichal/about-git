@@ -18,5 +18,10 @@ uri_for_page = "#{GRAPH_API_URL}idnes.cz"
 p uri_for_page
 response = Net::HTTP.get_response(URI.parse(uri_for_page))
 p response.code
-p JSON.parse(response.body)['id']
+host_id =  JSON.parse(response.body)['id']
+host_likes = JSON.parse(response.body)['likes']
+
+p "{#{host_id}, #{host_likes}}"
+
+
 
